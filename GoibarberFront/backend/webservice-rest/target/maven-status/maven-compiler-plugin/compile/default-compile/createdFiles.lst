@@ -1,8 +1,0 @@
-br\senac\tads\dsw\webservice_rest\dto\LoginResponse.class
-br\senac\tads\dsw\webservice_rest\dto\LoginRequest.class
-br\senac\tads\dsw\webservice_rest\WebserviceRestApplication.class
-br\senac\tads\dsw\webservice_rest\security\JwtUtil.class
-br\senac\tads\dsw\webservice_rest\repository\UserRepository.class
-br\senac\tads\dsw\webservice_rest\model\User.class
-br\senac\tads\dsw\webservice_rest\controller\AuthController.class
-br\senac\tads\dsw\webservice_rest\services\UserService.class

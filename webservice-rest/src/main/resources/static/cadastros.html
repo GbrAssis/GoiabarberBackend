@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goiabarber - Cadastros</title>
+    <link rel="stylesheet" href="src/styles/styles.css">
+    <link rel="stylesheet" href="src/styles/header.css">
+    <link rel="stylesheet" href="src/styles/cadastros.css">
+    <link rel="stylesheet" href="src/styles/footer.css">
+</head>
+<body>
+    <app-header></app-header>
+
+    <main class="cadastros-container">
+        <div class="steps-container">
+            <div class="steps">
+                <div class="step active" data-step="1">Tipo de Cadastro</div>
+                <div class="step" data-step="2">Informações</div>
+                <div class="step" data-step="3">Confirmação</div>
+            </div>
+        </div>
+
+        <div class="form-container">
+            <!-- Step 1: Escolha do tipo -->
+            <div class="step-content" id="step1">
+                <h2>O que você deseja cadastrar?</h2>
+                <div class="type-selection">
+                    <button class="type-button" data-type="service">Serviço</button>
+                    <button class="type-button" data-type="barber">Barbeiro</button>
+                </div>
+            </div>
+
+            <!-- Step 2: Formulário dinâmico -->
+            <div class="step-content hidden" id="step2">
+                <!-- Formulário de Serviço -->
+                <form id="serviceForm" class="hidden">
+                    <h2>Cadastro de Serviço</h2>
+                    <div class="form-group">
+                        <input type="text" id="serviceName" required placeholder="Nome do serviço">
+                        <textarea id="serviceDescription" required placeholder="Descrição do serviço"></textarea>
+                        <input type="text" id="serviceDuration" required placeholder="Duração (ex: 45min)">
+                        <input type="number" id="servicePrice" required placeholder="Preço">
+                        <input type="text" id="serviceImage" required placeholder="URL da imagem">
+                    </div>
+                </form>
+
+                <!-- Formulário de Barbeiro -->
+                <form id="barberForm" class="hidden">
+                    <h2>Cadastro de Barbeiro</h2>
+                    <div class="form-group">
+                        <input type="text" id="barberName" required placeholder="Nome do barbeiro">
+                        <input type="text" id="barberSpecialty" required placeholder="Especialidade">
+                        <input type="text" id="barberImage" required placeholder="URL da imagem">
+                        <div class="days-selection">
+                            <label>Dias disponíveis:</label>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox" value="1"> Segunda</label>
+                                <label><input type="checkbox" value="2"> Terça</label>
+                                <label><input type="checkbox" value="3"> Quarta</label>
+                                <label><input type="checkbox" value="4"> Quinta</label>
+                                <label><input type="checkbox" value="5"> Sexta</label>
+                                <label><input type="checkbox" value="6"> Sábado</label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Step 3: Confirmação -->
+            <div class="step-content hidden" id="step3">
+                <h2>Confirme as informações</h2>
+                <div id="confirmationDetails"></div>
+            </div>
+
+            <div class="buttons-container">
+                <button id="prevButton" class="hidden">Anterior</button>
+                <button id="nextButton">Próximo</button>
+            </div>
+        </div>
+        <app-footer></app-footer>
+    </main>
+
+    <script src="src/components/header.js"></script>
+    <script src="src/components/footer.js"></script>
+    <script type="module" src="src/js/cadastros.js"></script>
+</body>
+</html> 

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goibarber - Clientes</title>
+    <link rel="stylesheet" href="./src/styles/cliente.css">
+    <link rel="stylesheet" href="src/styles/styles.css">
+    <link rel="stylesheet" href="src/styles/header.css">
+    <link rel="stylesheet" href="src/styles/home.css">
+    <link rel="stylesheet" href="src/styles/footer.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">    
+</head>
+<body>
+    <app-header></app-header>
+    <div class="container">
+        <header>
+            <h1>Gerenciamento de Clientes</h1>
+        </header>
+
+        <main>
+            <section class="clients-section">
+                <h2>Lista de Clientes</h2>
+                <div class="clients-grid" id="clientsList">
+                    <!-- Clients will be inserted here by JavaScript -->
+                </div>
+            </section>
+
+            <section class="bookings-section">
+                <h2>Agendamentos</h2>
+                <div class="bookings-list" id="bookingsList">
+                    <!-- Bookings will be inserted here by JavaScript -->
+                </div>
+            </section>
+            <app-footer></app-footer>
+        </main>
+    </div>
+    <script src="src/components/header.js"></script>
+    <script src="src/components/footer.js"></script>
+    <script type="module" src="./src/js/cliente.js"></script>
+</body>
+</html> 

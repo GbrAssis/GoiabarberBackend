@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Goiabarber</title>
+    <link rel="stylesheet" href="src/styles/header.css">
+    <link rel="stylesheet" href="src/styles/footer.css">
+    <link rel="stylesheet" href="src/styles/checkout.css">
+    <link rel="stylesheet" href="src/styles/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <main class="checkout-container">
+        <div class="checkout-content">
+            <!-- Resumo do Agendamento -->
+            <section class="booking-summary" id="booking-summary"></section>
+
+            <!-- Forma de Pagamento -->
+            <section class="payment-section">
+                <h2><i class="fas fa-credit-card"></i> Forma de Pagamento</h2>
+                <div class="payment-options">
+                    <div id="credit-card" class="payment" >
+                        <input type="radio" name="payment" id="credit">
+                        <label for="credit">
+                            <i class="fas fa-credit-card"></i>
+                            <span>Cartão de Crédito</span>
+                        </label>
+                    </div>
+                    <div id="pix" class="payment">
+                        <input type="radio" name="payment" id="pix" checked>
+                        <label for="pix">
+                            <i class="fas fa-qrcode"></i>
+                            <span>PIX</span>
+                        </label>
+                    </div>
+                    <div id="money" class="payment">
+                        <input type="radio" name="payment" id="money">
+                        <label for="money">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <span>Dinheiro</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Formulário de Cartão -->
+                <div class="credit-card-form" id="credit-card-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="far fa-user"></i> Nome no Cartão</label>
+                            <input type="text" id="cardName" placeholder="Nome no Cartão">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-credit-card"></i> Número do Cartão</label>
+                            <input type="text" id="cardNumber" placeholder="Número do Cartão">
+                        </div>
+                    </div>
+                    <div class="form-row three-columns">
+                        <div class="form-group">
+                            <label><i class="far fa-calendar-alt"></i> Validade</label>
+                            <input type="text" id="cardExpiry" placeholder="MM/YY">
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-lock"></i> CVV</label>
+                            <input type="text" id="cardCVV" placeholder="CVV">
+                        </div>
+                        <div class="form-group" id="installments">
+                            <label><i class="fas fa-installment"></i> Parcelas</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PIX -->
+                <div id="pixSection" style="display: none">
+                    <h2>Pagamento PIX</h2>
+                    <p>Por favor, forneça o código PIX para o pagamento.</p>
+                </div>
+
+                <!-- Dinheiro -->
+                <div id="moneySection" style="display: none">
+                    <h2>Pagamento em Dinheiro</h2>
+                    <p>Por favor, realize o pagamento no local.</p>
+                </div>
+            </section>
+
+            <!-- Total e Confirmação -->
+            <section class="checkout-total">
+                <div class="total-card">
+                    <div class="total-row">
+                        <span>Taxa de serviço</span>
+                        <span>R$ 0,00</span>
+                    </div>
+                    <div class="total-row final" id="total-row">
+                        <span>Total</span>
+                    </div>
+                </div>
+                <btn-primary class="confirm-button">
+                    <i class="fas fa-lock"></i>
+                    Confirmar Pagamento
+                </btn-primary>
+            </section>
+        </div>
+    </main>
+    <script src="src/components/header.js"></script>
+    <script src="src/components/footer.js"></script>
+    <script src="src/js/checkout.js" defer></script>
+</body>
+</html>

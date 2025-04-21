@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goiabarber - Meu Perfil</title>
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="src/styles/styles.css">
+    <link rel="stylesheet" href="src/styles/header.css">
+    <link rel="stylesheet" href="src/styles/buttons.css">
+    <link rel="stylesheet" href="src/styles/footer.css">
+    <link rel="stylesheet" href="src/styles/perfil.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <app-header></app-header>
+    
+    <main>
+        <div class="profile-container">
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    <img src="" id="avatar-preview" alt="Foto de perfil">
+                    <div class="avatar-overlay">
+                        <label for="avatar-input" class="avatar-edit">
+                            <i class="fas fa-camera"></i>
+                        </label>
+                        <input type="file" id="avatar-input" accept="image/*" style="display: none;">
+                    </div>
+                </div>
+                <h1 id="profile-name"></h1>
+            </div>
+
+            <div class="profile-content">
+                <div class="profile-section">
+                    <h2>Informações Pessoais</h2>
+                    <div class="profile-info" id="view-mode">
+                        <div class="info-group">
+                            <label>Nome Completo:</label>
+                            <p id="display-nome"></p>
+                        </div>
+                        <div class="info-group">
+                            <label>E-mail:</label>
+                            <p id="display-email"></p>
+                        </div>
+                        <div class="info-group">
+                            <label>Telefone:</label>
+                            <p id="display-telefone"></p>
+                        </div>
+                        <div class="info-group">
+                            <label>Data de Nascimento:</label>
+                            <p id="display-nascimento"></p>
+                        </div>
+                        <a class="edit-button btn-login" onclick="toggleEditMode()">
+                            Editar Perfil
+                        </a>
+                    </div>
+
+                    <form class="profile-form" id="edit-mode" style="display: none;">
+                        <div class="input-box">
+                            <label>Nome Completo:</label>
+                            <input type="text" id="edit-nome" required>
+                        </div>
+                        <div class="input-box">
+                            <label>E-mail:</label>
+                            <input type="email" id="edit-email" required>
+                        </div>
+                        <div class="input-box">
+                            <label>Telefone:</label>
+                            <input type="tel" id="edit-telefone" required>
+                        </div>
+                        <div class="input-box">
+                            <label>Data de Nascimento:</label>
+                            <input type="date" id="edit-nascimento" required>
+                        </div>
+                        <div class="button-group">
+                            <a class="save-button btn-login" onclick="salvarAlteracoes()">
+                                Salvar
+                            </a>
+                            <a class="cancel-button btn-login" onclick="toggleEditMode()">
+                                Cancelar
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <app-footer></app-footer>
+    </main>
+    
+    <!-- JavaScript Files -->
+    <script src="src/components/buttons.js"></script>
+    <script src="src/components/header.js"></script>
+    <script src="src/components/footer.js"></script>
+    <script type="module" src="src/js/perfil.js"></script>
+    <script src="src/js/validacao.js"></script>
+</body>
+</html> 

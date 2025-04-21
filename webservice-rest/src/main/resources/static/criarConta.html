@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goiabarber - Criar Conta</title>
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="src/styles/styles.css">
+    <link rel="stylesheet" href="src/styles/header.css">
+    <link rel="stylesheet" href="src/styles/buttons.css">
+    <link rel="stylesheet" href="src/styles/footer.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <app-header></app-header>
+    
+    <main>
+        <div class="wrapper">
+            <img src="./src/logo-goiaba.png" alt="" class="logo">
+            
+            <div class="profile-avatar">
+                <img src="./src/assets/avatar-placeholder.png" id="avatar-preview" alt="Foto de perfil">
+                <div class="avatar-overlay">
+                    <label for="avatar-input" class="avatar-edit">
+                        <i class="fas fa-camera"></i>
+                    </label>
+                    <input type="file" id="avatar-input" accept="image/*" style="display: none;">
+                </div>
+            </div>
+
+            <div class="input-box">
+                <input type="text" placeholder="Nome completo" id="nome" required>
+                <small class="error-message" id="nome-error"></small>
+            </div>
+            <div class="input-box">
+                <input type="email" placeholder="E-mail" id="email" required>
+                <small class="error-message" id="email-error"></small>
+            </div>
+            <div class="input-box">
+                <input type="tel" placeholder="Telefone" id="telefone" required>
+                <small class="error-message" id="telefone-error"></small>
+            </div>
+            <div class="input-box">
+                <input type="password" placeholder="Senha" id="senha" required>
+                <small class="error-message" id="senha-error"></small>
+            </div>
+            <div class="input-box">
+                <input type="password" placeholder="Confirmar senha" id="confirmar-senha" required>
+                <small class="error-message" id="confirmar-senha-error"></small>
+            </div>
+
+            <btn-primary class="btn-register btn-form" onclick="validarFormulario()">Criar conta</btn-primary>
+            <div class="registro-link">
+                <a href="./index.html"><span class="white-text">Já tem uma conta?</span> Faça login</a>
+            </div>
+        </div>
+        <app-footer></app-footer>
+    </main>
+    
+    <!-- JavaScript Files -->
+    <script src="src/components/headerClear.js"></script>
+    <script src="src/components/footer.js"></script>
+    <script src="src/js/validacao.js"></script>
+</body>
+</html> 

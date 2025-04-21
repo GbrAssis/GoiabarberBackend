@@ -1,0 +1,226 @@
+:root {
+    /* Brand Colors */
+    --primary-color: #f8bf39;
+    --primary-color-hover: #e6b02f;
+
+    /* Background Colors */
+    --header-bg: #222;
+    --white: #ffffff;
+
+    /* Text Colors */
+    --text-primary: #ffffff;
+    --text-secondary: #333;
+
+    /* Shadow */
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+    font-weight: 900;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url(./src/goiaba-telafundo.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: var(--header-bg) !important;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    padding: 20px;
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 100px;
+    margin-bottom: 50px;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.wrapper img {
+    width: 300px;
+}
+.subtitle {
+    color: var(--primary-color);
+    font-size: 48px;
+    font-weight: bold;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.input-box {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.input-box label {
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-box input {
+    width: 100%;
+    height: 45px;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #222;
+    color: white;
+    font-size: 16px;
+    outline: none;
+}
+
+
+.lembrar label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.lembrar a {
+    color: #F8BF39;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.lembrar a:hover {
+    text-decoration: underline;
+}
+.btn-login, .btn-register {
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-login {
+    background-color: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-register {
+    background-color: var(--primary-color);
+    border: none;
+    color: var(--text-primary);
+}
+
+.btn-login:hover {
+    background-color: var(--primary-color);
+    color: var(--header-bg);
+}
+
+.btn-register:hover {
+    background-color: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+}
+.btn-form {
+    width: 100%;
+    height: 45px;
+    margin-top: 10px;
+    display: flex;  
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.registro-link {
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    margin-top: 20px;
+    text-align: center;
+    gap: px;
+}
+
+.registro-link a {
+    color: #F8BF39;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+}
+.white-text {
+    color: var(--white);
+}
+.registro-link a:hover {
+    text-decoration: underline;
+}
+.input-box {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.error-message {
+    font-size: 12px;
+    color: red;
+    display: block;
+    margin-top: 5px;
+}
+
+.input-box input {
+    margin-bottom: 2px;
+} 
+.profile-avatar {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 1rem auto;
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--primary-color);
+    background-color: #f0f0f0;
+}
+
+.avatar-overlay {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: var(--primary-color);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.avatar-overlay:hover {
+    background: var(--primary-color-dark);
+}
+
+.avatar-edit {
+    color: white;
+    cursor: pointer;
+}
+
+.logo {
+    max-width: 200px;
+    margin-bottom: 1rem;
+} 

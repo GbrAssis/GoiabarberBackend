@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agradecimento - Goiabarber</title>
+    <link rel="stylesheet" href="src/styles/styles.css">
+    <link rel="stylesheet" href="src/styles/header.css">
+    <link rel="stylesheet" href="src/styles/footer.css">
+    <link rel="stylesheet" href="src/styles/thank-you.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <main class="thank-you-container">
+        <div class="thank-you-content">
+            <img src="../GoibarberFront/src/logo-goiaba.png" alt="Goiabarber Logo" class="logo">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h1>Agendamento Confirmado!</h1>
+            <p class="order-number">Número do pedido: <span id="orderNumber"></span></p>
+            <p class="message">
+                Obrigado por escolher a Goiabarber! Seu agendamento foi confirmado com sucesso.
+                Em breve você receberá um e-mail com todos os detalhes.
+            </p>
+            <a href="index.html" class="return-button">
+                <i class="fas fa-home"></i>
+                Voltar para a página inicial
+            </a>
+        </div>
+    </main>
+
+    <script>
+        window.onload = function() {
+            const params = new URLSearchParams(window.location.search);
+            const orderNumber = params.get('order');
+            document.getElementById('orderNumber').textContent = orderNumber;
+        }
+    </script>
+</body>
+</html> 

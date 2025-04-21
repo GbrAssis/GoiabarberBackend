@@ -1,0 +1,206 @@
+.cadastros-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+    color: var(--text-primary);
+    margin-top: 140px;
+}
+
+.steps-container {
+    margin-bottom: 2rem;
+}
+
+.steps {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.steps::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--primary-color);
+    opacity: 0.3;
+    z-index: -1;
+}
+
+.step {
+    background: var(--header-bg);
+    padding: 0.8rem 1.5rem;
+    border-radius: 20px;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.step i {
+    font-size: 1.2rem;
+}
+
+.step.active {
+    background: var(--primary-color);
+    color: var(--header-bg);
+    font-weight: bold;
+    box-shadow: 0 0 15px rgba(248, 191, 57, 0.3);
+}
+
+.form-container {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8px);
+}
+
+.type-selection {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.type-button {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    background: rgba(248, 191, 57, 0.1);
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.type-button i {
+    font-size: 1.2rem;
+}
+
+.type-button:hover {
+    background: var(--primary-color);
+    color: var(--header-bg);
+    transform: translateY(-2px);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+input, textarea {
+    padding: 0.8rem;
+    border: 1px solid rgba(248, 191, 57, 0.2);
+    border-radius: 8px;
+    background: rgba(34, 34, 34, 0.7);
+    color: #fff;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(248, 191, 57, 0.2);
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.checkbox-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+    color: var(--text-primary);
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    gap: 1rem;
+}
+
+#prevButton, #nextButton {
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+#prevButton i, #nextButton i {
+    font-size: 1.2rem;
+}
+
+#prevButton {
+    background-color: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+#nextButton {
+    background-color: var(--primary-color);
+    border: none;
+    color: var(--text-primary);
+}
+
+#prevButton:hover {
+    background-color: var(--primary-color);
+    color: var(--header-bg);
+}
+
+#nextButton:hover {
+    background-color: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.hidden {
+    display: none;
+}
+
+#confirmationDetails {
+    margin: 1rem 0;
+    padding: 1.5rem;
+    border: 1px solid rgba(248, 191, 57, 0.3);
+    border-radius: 8px;
+    background: rgba(248, 191, 57, 0.05);
+    color: var(--text-primary);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+}
+
+.form-group label {
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+} 
