@@ -1,0 +1,65 @@
+# Explicação do Projeto: Design Patterns, Tecnologias e Frameworks
+
+## 1. Design Patterns Utilizados
+
+### a) MVC (Model-View-Controller)
+- **Model:** Classes como `User`, `Servico`, `Agendamento` representam os dados.
+- **View:** No frontend, arquivos HTML/CSS/JS (ex: `index.html`, `agendamento.js`).
+- **Controller:** Classes como `AuthController`, `ServicoController` expõem endpoints REST.
+
+### b) Repository Pattern
+- Interfaces como `UserRepository`, `ServicoRepository`, `AgendamentoRepository` abstraem o acesso a dados, permitindo trocar a implementação do banco sem afetar o restante do código.
+
+### c) Service Layer Pattern
+- Classes como `UserService` encapsulam a lógica de negócio, separando-a dos controllers e repositórios.
+
+### d) Dependency Injection
+- Uso de `@Autowired` do Spring para injetar dependências (ex: repositórios nos serviços, serviços nos controllers).
+
+### e) DTO (Data Transfer Object)
+- Classes como `LoginRequest`, `LoginResponse` são usadas para transportar dados entre camadas, especialmente em requisições/respostas REST.
+
+### f) Singleton
+- O Spring gerencia beans como singletons por padrão (ex: controllers, services, repositórios).
+
+### g) Builder/Fluent API (indiretamente via JPA)
+- O uso do JPA permite construir queries e entidades de forma fluente.
+
+---
+
+## 2. Tecnologias e Frameworks Utilizados
+
+### Backend (Java)
+- **Spring Boot:** Framework principal para desenvolvimento de aplicações web e REST.
+- **Spring Web:** Para criação de APIs REST.
+- **Spring Data JPA:** Para persistência de dados e integração com bancos de dados relacionais.
+- **H2 Database:** Banco de dados em memória para testes/desenvolvimento.
+- **MySQL Connector:** Driver para conexão com banco de dados MySQL.
+- **JWT (io.jsonwebtoken):** Para autenticação baseada em tokens JWT.
+- **Jakarta Persistence (JPA):** Anotações como `@Entity`, `@Id`, etc.
+- **Maven:** Gerenciamento de dependências e build.
+
+### Frontend
+- **HTML5/CSS3:** Estrutura e estilo das páginas.
+- **JavaScript (ES6+):** Lógica de interação no frontend.
+- **Web Components:** Uso de `customElements.define` para componentes como `<app-header>`.
+- **Font Awesome:** Ícones.
+- **Fetch API:** Para requisições HTTP ao backend.
+
+### Outros
+- **LocalStorage:** Armazenamento de dados mockados no frontend.
+- **Node.js (provavelmente para servir arquivos estáticos em dev, mas não explicitamente listado).**
+
+---
+
+## 3. Resumo Visual
+
+| Camada         | Tecnologia/Framework | Design Pattern(s)         |
+|----------------|---------------------|---------------------------|
+| Backend        | Spring Boot, JPA, JWT, H2, MySQL | MVC, Repository, Service, Singleton, DTO, Dependency Injection |
+| Frontend       | HTML, CSS, JS, Web Components | MVC (no sentido amplo), Singleton (componentes) |
+| Comunicação    | REST (HTTP/JSON)    | DTO                       |
+
+---
+
+Este arquivo resume os principais padrões de projeto, tecnologias e frameworks utilizados no projeto Goibarber REST. 

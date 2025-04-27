@@ -1,5 +1,3 @@
-import { MOCK_DATA } from '../mocks/data.js';
-
 class CadastroManager {
     constructor() {
         this.currentStep = 1;
@@ -141,38 +139,29 @@ class CadastroManager {
     }
 
     async saveToDataJs() {
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                if (this.selectedType === 'service') {
-                    const newService = {
-                        id: MOCK_DATA.services.length + 1,
-                        ...this.formData
-                    };
-                    
-                    // Adiciona ao MOCK_DATA
-                    MOCK_DATA.services.push(newService);
-                    
-                    // Atualiza localStorage
-                    const services = JSON.parse(localStorage.getItem('services') || '[]');
-                    services.push(newService);
-                    localStorage.setItem('services', JSON.stringify(services));
-                } else {
-                    const newBarber = {
-                        id: MOCK_DATA.barbers.length + 1,
-                        ...this.formData
-                    };
-                    
-                    // Adiciona ao MOCK_DATA
-                    MOCK_DATA.barbers.push(newBarber);
-                    
-                    // Atualiza localStorage
-                    const barbers = JSON.parse(localStorage.getItem('barbers') || '[]');
-                    barbers.push(newBarber);
-                    localStorage.setItem('barbers', JSON.stringify(barbers));
-                }
-                resolve(true);
-            }, 500);
-        });
+        if (this.selectedType === 'barber') {
+            // Monta o payload conforme esperado pelo backend
+            const payload = {
+                nome: this.formData.name,
+                email: this.formData.email || '', // ajuste conforme seu formulário
+                senha: this.formData.senha || '', // ajuste conforme seu formulário
+                tipo: 'barber',
+                // Adicione outros campos se o backend aceitar
+            };
+            const response = await fetch('/login/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(errorText);
+            }
+            return response.json();
+        } else {
+            // Serviço: mantenha o mock ou implemente integração se houver endpoint
+            return new Promise((resolve) => setTimeout(() => resolve(true), 500));
+        }
     }
 
     // Método adicional para limpar dados (útil para testes)
@@ -186,4 +175,71 @@ class CadastroManager {
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     new CadastroManager();
-}); 
+});
+
+// Função global para cadastro de usuário simples (criarConta.html)
+async function cadastrarUsuario() {
+    // Coleta os dados dos campos
+    const nome = document.getElementById('nome').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const telefone = document.getElementById('telefone').value.trim();
+    const senha = document.getElementById('senha').value;
+    const confirmarSenha = document.getElementById('confirmar-senha').value;
+
+    // Limpa mensagens de erro
+    document.getElementById('nome-error').textContent = '';
+    document.getElementById('email-error').textContent = '';
+    document.getElementById('telefone-error').textContent = '';
+    document.getElementById('senha-error').textContent = '';
+    document.getElementById('confirmar-senha-error').textContent = '';
+
+    // Validação simples
+    let hasError = false;
+    if (!nome) {
+        document.getElementById('nome-error').textContent = 'Nome obrigatório';
+        hasError = true;
+    }
+    if (!email) {
+        document.getElementById('email-error').textContent = 'E-mail obrigatório';
+        hasError = true;
+    }
+    if (!telefone) {
+        document.getElementById('telefone-error').textContent = 'Telefone obrigatório';
+        hasError = true;
+    }
+    if (!senha) {
+        document.getElementById('senha-error').textContent = 'Senha obrigatória';
+        hasError = true;
+    }
+    if (senha !== confirmarSenha) {
+        document.getElementById('confirmar-senha-error').textContent = 'As senhas não coincidem';
+        hasError = true;
+    }
+    if (hasError) return;
+
+    // Monta o payload conforme esperado pelo backend
+    const payload = {
+        nome,
+        email,
+        telefone,
+        senha,
+        tipo: 'cliente' // ou 'user', ajuste conforme o backend espera
+    };
+
+    try {
+        const response = await fetch('/login/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+        if (!response.ok) {
+            const errorText = await response.text();
+            alert('Erro ao criar conta: ' + errorText);
+            return;
+        }
+        alert('Conta criada com sucesso!');
+        window.location.href = './index.html';
+    } catch (error) {
+        alert('Erro ao criar conta: ' + error.message);
+    }
+} 

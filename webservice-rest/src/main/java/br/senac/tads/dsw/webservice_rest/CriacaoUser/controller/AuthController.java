@@ -1,10 +1,10 @@
-package br.senac.tads.dsw.webservice_rest.controller;
+package br.senac.tads.dsw.webservice_rest.CriacaoUser.controller;
 
-import br.senac.tads.dsw.webservice_rest.dto.LoginRequest;
-import br.senac.tads.dsw.webservice_rest.dto.LoginResponse;
-import br.senac.tads.dsw.webservice_rest.model.User;
-import br.senac.tads.dsw.webservice_rest.repository.UserRepository;
-import br.senac.tads.dsw.webservice_rest.security.JwtUtil;
+import br.senac.tads.dsw.webservice_rest.CriacaoUser.dto.LoginRequest;
+import br.senac.tads.dsw.webservice_rest.CriacaoUser.dto.LoginResponse;
+import br.senac.tads.dsw.webservice_rest.CriacaoUser.model.User;
+import br.senac.tads.dsw.webservice_rest.CriacaoUser.repository.UserRepository;
+import br.senac.tads.dsw.webservice_rest.CriacaoUser.security.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
@@ -55,5 +55,14 @@ public class AuthController {
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = userRepository.findAll();
         return ResponseEntity.ok(users);
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<?> register(@RequestBody User user) {
+        if (userRepository.findByEmail(user.getEmail()).isPresent()) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Email já cadastrado");
+        }
+        User savedUser = userRepository.save(user);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
     }
 }

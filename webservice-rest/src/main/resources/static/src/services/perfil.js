@@ -1,23 +1,12 @@
-import { getCookie } from '../services/auth.js';
-
-// Get user data from cookies
-const data = getCookie('userData');
-console.log(data);
-const userData = JSON.parse(data) || 'null';
-console.log(userData)
-// Redirect to login if no user data found
-if (!userData) {
-    window.location.href = '/index.html';
-}
-
 // Initialize profile data
 function initializeProfile() {
     // Set profile information
-    document.getElementById('profile-name').textContent = userData.nome;
-    document.getElementById('display-nome').textContent = userData.nome;
-    document.getElementById('display-email').textContent = userData.email;
-    document.getElementById('display-telefone').textContent = userData.telefone;
-    document.getElementById('display-nascimento').textContent = userData.nascimento;
+    const payload = getTokenPayload();
+    document.getElementById('profile-name').textContent = payload.nome;
+    document.getElementById('display-nome').textContent = payload.nome;
+    document.getElementById('display-email').textContent = payload.sub;
+    document.getElementById('display-telefone').textContent = payload.telefone;
+    document.getElementById('display-nascimento').textContent = payload.nascimento;
     
     // Set avatar
     const avatarPreview = document.getElementById('avatar-preview');
@@ -92,4 +81,38 @@ document.getElementById('avatar-input').addEventListener('change', function(even
 });
 
 // Initialize profile when page loads
-document.addEventListener('DOMContentLoaded', initializeProfile); 
+document.addEventListener('DOMContentLoaded', initializeProfile);
+
+function getTokenPayload() {
+    const token = localStorage.getItem('token');
+    if (!token) return null;
+
+    const payloadBase64 = token.split('.')[1];
+    if (!payloadBase64) return null;
+
+    // Decodifica Base64Url para Base64
+    let base64 = payloadBase64.replace(/-/g, '+').replace(/_/g, '/');
+    // Adiciona padding se necessário
+    while (base64.length % 4) {
+        base64 += '=';
+    }
+
+    try {
+        const jsonPayload = decodeURIComponent(
+            atob(base64)
+                .split('')
+                .map(function(c) {
+                    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+                })
+                .join('')
+        );
+        return JSON.parse(jsonPayload);
+    } catch (e) {
+        return null;
+    }
+}
+
+// Exemplo de uso:
+const payload = getTokenPayload();
+console.log(payload);
+// payload.nome, payload.email, payload.tipo, etc. 

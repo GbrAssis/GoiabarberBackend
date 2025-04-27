@@ -1,4 +1,3 @@
-import { ApiService } from '../mocks/data.js';
 import { setCookie, getCookie, removeCookie } from './auth.js';
 
 // Função para lidar com o login
@@ -30,14 +29,8 @@ async function handleLogin() {
         console.log(response);
         if (response.ok) {
             const data = await response.json();
-            // Armazena o token ou dados do usuário se necessário
             localStorage.setItem('token', data.token);
-            localStorage.setItem('nome', data.nome);
-            localStorage.setItem('email', data.email);
-            localStorage.setItem('tipo', data.tipo);
-            
-            // Redireciona para a página principal após login
-            window.location.href = '/home.html'; // Ajuste o caminho conforme necessário
+            window.location.href = '/home.html';
         } else {
             errorMessage.textContent = 'Email ou senha inválidos';
             errorMessage.style.display = 'block';

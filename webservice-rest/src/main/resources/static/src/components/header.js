@@ -12,28 +12,28 @@ class Header extends HTMLElement {
         
         // Admin menu items that should only be shown to admin users
         const adminMenuItems = isAdmin ? `
-            <li><a href="/GoibarberFront/cadastros.html">Cadastros</a></li>
-            <li><a href="/GoibarberFront/cliente.html">Cliente</a></li>
+            <li><a href="/cadastros.html">Cadastros</a></li>
+            <li><a href="/cliente.html">Cliente</a></li>
         ` : '';
 
         this.innerHTML = `
             <header class="header desktop">
                 <nav class="nav-container">
                     <div class="logo">
-                        <a href="/GoibarberFront/home.html">
+                        <a href="/home.html">
                             <img src="./src/logo-goiaba.png" alt="Goiabarber Logo">
                         </a>
                     </div>
                     <ul class="nav-links">
-                        <li><a href="/GoibarberFront/home.html">Home</a></li>
-                        <li><a href="/GoibarberFront/servicos.html">Serviços</a></li>
-                        <li><a href="/GoibarberFront/agendamento.html">Agendamento</a></li>
-                        <li><a href="/GoibarberFront/perfil.html">Perfil</a></li>
+                        <li><a href="/home.html">Home</a></li>
+                        <li><a href="/servicos.html">Serviços</a></li>
+                        <li><a href="/agendamento.html">Agendamento</a></li>
+                        <li><a href="/perfil.html">Perfil</a></li>
                         ${adminMenuItems}
                     </ul>
                     <div class="user-actions">
                         
-                        <a href="/GoibarberFront/index.html"class="btn-login">Sair</a>
+                        <a href="/index.html"class="btn-login">Sair</a>
                     </div>
                 </nav>
             </header>
@@ -41,7 +41,7 @@ class Header extends HTMLElement {
             <header class="header mobile">
                 <nav class="nav-container nav-container-mobile ">
                     <div class="logo">
-                        <a href="/GoibarberFront/home.html">
+                        <a href="/home.html">
                             <img src="./src/logo-goiaba.png" alt="Goiabarber Logo">
                         </a>
                     </div>
@@ -49,13 +49,13 @@ class Header extends HTMLElement {
                     <span class="hamburger-inner"></span>
                     </span>                    
                     <ul class="nav-links mobile-menu">
-                        <li><a href="/GoibarberFront/home.html">Home</a></li>
-                        <li><a href="/GoibarberFront/servicos.html">Serviços</a></li>
-                        <li><a href="/GoibarberFront/agendamento.html">Agendamento</a></li>
-                        <li><a href="/GoibarberFront/perfil.html">Perfil</a></li>
+                        <li><a href="/home.html">Home</a></li>
+                        <li><a href="/servicos.html">Serviços</a></li>
+                        <li><a href="/agendamento.html">Agendamento</a></li>
+                        <li><a href="/perfil.html">Perfil</a></li>
                         ${adminMenuItems}
                         <div class="user-actions">
-                            <a href="/GoibarberFront/index.html"class="btn-login">Sair</a>
+                            <a href="/index.html"class="btn-login">Sair</a>
                         </div>
                     </ul>
                 </nav>

@@ -1,6 +1,6 @@
-package br.senac.tads.dsw.webservice_rest.repository;
+package br.senac.tads.dsw.webservice_rest.CriacaoUser.repository;
 
-import br.senac.tads.dsw.webservice_rest.model.User;
+import br.senac.tads.dsw.webservice_rest.CriacaoUser.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

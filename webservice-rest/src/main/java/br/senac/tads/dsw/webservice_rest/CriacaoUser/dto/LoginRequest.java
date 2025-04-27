@@ -1,4 +1,4 @@
-package br.senac.tads.dsw.webservice_rest.dto;
+package br.senac.tads.dsw.webservice_rest.CriacaoUser.dto;
 
 public class LoginRequest {
     private String email;

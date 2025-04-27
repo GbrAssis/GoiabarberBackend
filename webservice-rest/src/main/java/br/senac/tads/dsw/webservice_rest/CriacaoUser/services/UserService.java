@@ -1,7 +1,7 @@
-package br.senac.tads.dsw.webservice_rest.services;
+package br.senac.tads.dsw.webservice_rest.CriacaoUser.services;
 
-import br.senac.tads.dsw.webservice_rest.model.User;
-import br.senac.tads.dsw.webservice_rest.repository.UserRepository;
+import br.senac.tads.dsw.webservice_rest.CriacaoUser.model.User;
+import br.senac.tads.dsw.webservice_rest.CriacaoUser.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

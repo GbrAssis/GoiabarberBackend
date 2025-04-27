@@ -1,6 +1,6 @@
-package br.senac.tads.dsw.webservice_rest.security;
+package br.senac.tads.dsw.webservice_rest.CriacaoUser.security;
 
-import br.senac.tads.dsw.webservice_rest.model.User;
+import br.senac.tads.dsw.webservice_rest.CriacaoUser.model.User;
 import io.jsonwebtoken.*;
 import org.springframework.stereotype.Component;
 

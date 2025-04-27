@@ -1,4 +1,4 @@
-package br.senac.tads.dsw.webservice_rest.model;
+package br.senac.tads.dsw.webservice_rest.CriacaoUser.model;    
 
 import jakarta.persistence.*;
 
