@@ -2,6 +2,7 @@
 function initializeProfile() {
     // Set profile information
     const payload = getTokenPayload();
+    console.log(payload);
     document.getElementById('profile-name').textContent = payload.nome;
     document.getElementById('display-nome').textContent = payload.nome;
     document.getElementById('display-email').textContent = payload.sub;
@@ -33,8 +34,39 @@ window.toggleEditMode = () => {
     }
 };
 
-// Save changes
-window.salvarAlteracoes = () => {
+// Função para atualizar o perfil do usuário no backend
+async function atualizarPerfil(updatedData) {
+    const payload = getTokenPayload();
+    if (!payload || !payload.id) {
+        alert('Não foi possível identificar o usuário.');
+        return;
+    }
+    const token = localStorage.getItem('token');
+    try {
+        const response = await fetch(`/login/users/${payload.id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                ...(token && { 'Authorization': `Bearer ${token}` })
+            },
+            body: JSON.stringify(updatedData)
+        });
+        if (!response.ok) {
+            const errorText = await response.text();
+            alert('Erro ao atualizar perfil: ' + errorText);
+            return;
+        }
+        const user = await response.json();
+        // Atualiza o cookie/localStorage se necessário
+        document.cookie = `userData=${JSON.stringify(user)};path=/;max-age=${7 * 24 * 60 * 60}`;
+        alert('Perfil atualizado com sucesso!');
+    } catch (error) {
+        alert('Erro ao atualizar perfil: ' + error.message);
+    }
+}
+
+// Salvar alterações e enviar para o backend
+window.salvarAlteracoes = async () => {
     // Get updated values
     const updatedData = {
         ...userData,
@@ -44,8 +76,8 @@ window.salvarAlteracoes = () => {
         nascimento: document.getElementById('edit-nascimento').value
     };
 
-    // Update cookie with new data
-    document.cookie = `userData=${JSON.stringify(updatedData)};path=/;max-age=${7 * 24 * 60 * 60}`; // 7 days
+    // Chama a função para atualizar no backend
+    await atualizarPerfil(updatedData);
 
     // Update display
     document.getElementById('profile-name').textContent = updatedData.nome;

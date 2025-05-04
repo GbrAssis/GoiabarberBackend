@@ -65,4 +65,21 @@ public class AuthController {
         User savedUser = userRepository.save(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
     }
+
+    @PutMapping("/users/{id}")
+    public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody User updatedUser) {
+        Optional<User> userOpt = userRepository.findById(id);
+        if (userOpt.isPresent()) {
+            User user = userOpt.get();
+            user.setNome(updatedUser.getNome());
+            user.setEmail(updatedUser.getEmail());
+            user.setSenha(updatedUser.getSenha());
+            user.setTipo(updatedUser.getTipo());
+            // Adicione outros campos aqui conforme necessário (telefone, nascimento, etc)
+            userRepository.save(user);
+            return ResponseEntity.ok(user);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado");
+        }
+    }
 }

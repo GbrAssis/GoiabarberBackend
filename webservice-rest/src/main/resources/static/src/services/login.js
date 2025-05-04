@@ -29,7 +29,9 @@ async function handleLogin() {
         console.log(response);
         if (response.ok) {
             const data = await response.json();
-            localStorage.setItem('token', data.token);
+            console.log(data);
+            localStorage.setItem('userData', JSON.stringify(data));
+            localStorage.setItem('token', JSON.stringify(data));
             window.location.href = '/home.html';
         } else {
             errorMessage.textContent = 'Email ou senha inválidos';
