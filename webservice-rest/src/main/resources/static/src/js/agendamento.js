@@ -1,4 +1,4 @@
-import { ApiService } from '../mocks/data.js';
+// import { ApiService } from '../mocks/data.js';
 import { Calendar } from './calendar.js';
 
 class BookingManager {
@@ -220,12 +220,13 @@ class BookingManager {
         try {
             this.setLoading(true);
             
-            const services = await ApiService.getServices();
+            const services = await fetch('/servicos').then(r => r.json());
             this.renderServices(services);
-            const barbers = await ApiService.getBarbers();
+            console.log('Serviços carregados:', services);
+            const barbers = await fetch('/barbeiros').then(r => r.json());
             this.renderBarbers(barbers);
-
-            const userBookings = await ApiService.getUserBookings();
+            console.log('Barbeiros carregados:', barbers);
+            const userBookings = await fetch('/agendamentos').then(r => r.json());
             console.log('Agendamentos do usuário carregados:', userBookings);
             this.setLoading(true);
             await this.renderUserBookings(userBookings);

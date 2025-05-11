@@ -4,7 +4,8 @@ public class LoginResponse {
     private String token;
     private String nome;
     private String email;
-    private String tipo;
+    private String telefone;
+    private boolean admin;
 
     // Getters e Setters
     public String getToken() { return token; }
@@ -16,6 +17,9 @@ public class LoginResponse {
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
 
-    public String getTipo() { return tipo; }
-    public void setTipo(String tipo) { this.tipo = tipo; }
+    public String getTelefone() { return telefone; }
+    public void setTelefone(String telefone) { this.telefone = telefone; }
+
+    public boolean isAdmin() { return admin; }
+    public void setAdmin(boolean admin) { this.admin = admin; }
 }

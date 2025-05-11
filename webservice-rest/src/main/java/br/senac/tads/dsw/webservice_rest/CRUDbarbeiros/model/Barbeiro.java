@@ -2,6 +2,7 @@ package br.senac.tads.dsw.webservice_rest.CRUDbarbeiros.model;
 
 import jakarta.persistence.*;
 
+@Table(name = "barbers")
 @Entity
 public class Barbeiro {
 

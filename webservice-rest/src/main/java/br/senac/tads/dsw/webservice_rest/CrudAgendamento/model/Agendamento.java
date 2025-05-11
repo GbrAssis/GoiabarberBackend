@@ -5,6 +5,7 @@ import br.senac.tads.dsw.webservice_rest.CRUD.model.Servico;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
+@Table(name = "bookings")
 @Entity
 public class Agendamento {
 

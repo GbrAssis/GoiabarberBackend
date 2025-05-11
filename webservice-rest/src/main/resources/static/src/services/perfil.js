@@ -1,26 +1,22 @@
-// Initialize profile data
 function initializeProfile() {
-    // Set profile information
+
     const payload = getTokenPayload();
-    console.log(payload);
+    console.log("payload", payload);
     document.getElementById('profile-name').textContent = payload.nome;
     document.getElementById('display-nome').textContent = payload.nome;
     document.getElementById('display-email').textContent = payload.sub;
     document.getElementById('display-telefone').textContent = payload.telefone;
     document.getElementById('display-nascimento').textContent = payload.nascimento;
     
-    // Set avatar
     const avatarPreview = document.getElementById('avatar-preview');
     avatarPreview.src = userData.avatar;
     
-    // Set form values for edit mode
     document.getElementById('edit-nome').value = userData.nome;
     document.getElementById('edit-email').value = userData.email;
     document.getElementById('edit-telefone').value = userData.telefone;
     document.getElementById('edit-nascimento').value = userData.nascimento;
 }
 
-// Toggle edit mode
 window.toggleEditMode = () => {
     const viewMode = document.getElementById('view-mode');
     const editMode = document.getElementById('edit-mode');
@@ -34,7 +30,6 @@ window.toggleEditMode = () => {
     }
 };
 
-// Função para atualizar o perfil do usuário no backend
 async function atualizarPerfil(updatedData) {
     const payload = getTokenPayload();
     if (!payload || !payload.id) {
@@ -116,7 +111,8 @@ document.getElementById('avatar-input').addEventListener('change', function(even
 document.addEventListener('DOMContentLoaded', initializeProfile);
 
 function getTokenPayload() {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('userData');
+    console.log(token);
     if (!token) return null;
 
     const payloadBase64 = token.split('.')[1];
@@ -146,5 +142,3 @@ function getTokenPayload() {
 
 // Exemplo de uso:
 const payload = getTokenPayload();
-console.log(payload);
-// payload.nome, payload.email, payload.tipo, etc. 

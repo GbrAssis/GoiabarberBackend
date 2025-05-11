@@ -38,9 +38,15 @@ public class ServicoController {
     public ResponseEntity<Servico> atualizar(@PathVariable Long id, @RequestBody Servico servicoAtualizado) {
         return servicoRepository.findById(id)
                 .map(servico -> {
-                    servico.setNome(servicoAtualizado.getNome());
-                    servico.setDescricao(servicoAtualizado.getDescricao());
-                    servico.setPreco(servicoAtualizado.getPreco());
+                    servico.setName(servicoAtualizado.getName());
+                    servico.setDescription(servicoAtualizado.getDescription());
+                    servico.setDuration(servicoAtualizado.getDuration());
+                    servico.setPrice(servicoAtualizado.getPrice());
+                    servico.setOriginalPrice(servicoAtualizado.getOriginalPrice());
+                    servico.setDiscount(servicoAtualizado.getDiscount());
+                    servico.setImage(servicoAtualizado.getImage());
+                    servico.setCategory(servicoAtualizado.getCategory());
+                    servico.setBadge(servicoAtualizado.getBadge());
                     servicoRepository.save(servico);
                     return ResponseEntity.ok(servico);
                 })

@@ -38,7 +38,8 @@ public class AuthController {
                 response.setToken(token);
                 response.setNome(user.getNome());
                 response.setEmail(user.getEmail());
-                response.setTipo(user.getTipo());
+                response.setAdmin(user.isAdmin());
+                response.setTelefone(user.getTelefone());
 
                 return ResponseEntity.ok(response);
             } else {
