@@ -10,37 +10,74 @@ public class Barbeiro {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nome;
+    private String name;
 
-    private String especialidade;
+    private String specialty;
 
-    // Construtores
+    private String image;
+
+    private Double rating;
+
+    @ElementCollection
+    @CollectionTable(
+        name = "barber_available_days",
+        joinColumns = @JoinColumn(name = "barber_id")
+    )
+    @Column(name = "day_of_week")
+    private java.util.List<Integer> availableDays;
+
     public Barbeiro() {
     }
 
-    public Barbeiro(String nome, String especialidade) {
-        this.nome = nome;
-        this.especialidade = especialidade;
+    public Barbeiro(String name, String specialty, String image, Double rating, java.util.List<Integer> availableDays) {
+        this.name = name;
+        this.specialty = specialty;
+        this.image = image;
+        this.rating = rating;
+        this.availableDays = availableDays;
     }
 
-    // Getters e Setters
     public Long getId() {
         return id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getEspecialidade() {
-        return especialidade;
+    public String getSpecialty() {
+        return specialty;
     }
 
-    public void setEspecialidade(String especialidade) {
-        this.especialidade = especialidade;
+    public void setSpecialty(String specialty) {
+        this.specialty = specialty;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public Double getRating() {
+        return rating;
+    }
+
+    public void setRating(Double rating) {
+        this.rating = rating;
+    }
+
+    public java.util.List<Integer> getAvailableDays() {
+        return availableDays;
+    }
+
+    public void setAvailableDays(java.util.List<Integer> availableDays) {
+        this.availableDays = availableDays;
     }
 }

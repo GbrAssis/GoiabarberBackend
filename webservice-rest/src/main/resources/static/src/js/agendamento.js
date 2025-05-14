@@ -1,4 +1,3 @@
-// import { ApiService } from '../mocks/data.js';
 import { Calendar } from './calendar.js';
 
 class BookingManager {
@@ -9,6 +8,7 @@ class BookingManager {
         this.selectedDate = null;
         this.selectedTime = null;
         this.loading = false;
+        this.barbers = [];
 
         this.initializeElements();
         this.addEventListeners();
@@ -177,6 +177,7 @@ class BookingManager {
     }
 
     selectTimeSlot(slot) {
+ 
         document.querySelectorAll('.time-slot').forEach(s => 
             s.classList.remove('selected'));
         
@@ -188,6 +189,7 @@ class BookingManager {
     }
 
     updateSummary() {
+     
         const summary = {
             servico: this.selectedService?.name,
             barbeiro: this.selectedBarber?.name,
@@ -222,12 +224,10 @@ class BookingManager {
             
             const services = await fetch('/servicos').then(r => r.json());
             this.renderServices(services);
-            console.log('Serviços carregados:', services);
             const barbers = await fetch('/barbeiros').then(r => r.json());
+            this.barbers = barbers;
             this.renderBarbers(barbers);
-            console.log('Barbeiros carregados:', barbers);
             const userBookings = await fetch('/agendamentos').then(r => r.json());
-            console.log('Agendamentos do usuário carregados:', userBookings);
             this.setLoading(true);
             await this.renderUserBookings(userBookings);
             this.setLoading(false);
@@ -303,11 +303,7 @@ class BookingManager {
         if (!this.selectedBarber || !this.selectedDate) return;
         try {
             this.setLoading(true);
-            const availableSlots = await ApiService.getBarberAvailability(
-                this.selectedBarber.id,
-                this.selectedDate
-            );
-
+            const availableSlots = this.getBarberAvailability(this.selectedBarber.id, this.selectedDate);
             this.renderTimeSlots(availableSlots);
         } catch (error) {
             console.error('Erro ao carregar horários disponíveis:', error);
@@ -357,17 +353,25 @@ class BookingManager {
         return labels[status] || status;
     }
 
+    createBookingData(bookingData) {
+        const newBooking = {
+            id: Math.floor(Math.random() * 1000),
+            ...bookingData,
+            status: "pending"
+        };
+        return newBooking;
+    }
+
     async createBooking() {
-        console.log('Iniciando criação de agendamento...');
         
         if (!this.validateBookingData()) {
-            console.log('Dados de agendamento inválidos');
             return;
         }
 
         try {
             this.setLoading(true);
-            console.log('Dados do agendamento:', {
+
+            const newBooking = this.createBookingData({
                 serviceId: this.selectedService.id,
                 barberId: this.selectedBarber.id,
                 date: this.selectedDate,
@@ -375,15 +379,6 @@ class BookingManager {
                 price: this.selectedService.price
             });
 
-            const newBooking = await ApiService.createBooking({
-                serviceId: this.selectedService.id,
-                barberId: this.selectedBarber.id,
-                date: this.selectedDate,
-                time: this.selectedTime,
-                price: this.selectedService.price
-            });
-
-            console.log('Agendamento criado com sucesso:', newBooking);
             this.showSuccess('Agendamento realizado com sucesso!');
             this.redirectToCheckout(newBooking.id);
         } catch (error) {
@@ -400,18 +395,11 @@ class BookingManager {
                           this.selectedDate && 
                           this.selectedTime);
 
-        console.log('Validação de dados:', {
-            servico: !!this.selectedService,
-            barbeiro: !!this.selectedBarber,
-            data: !!this.selectedDate,
-            horario: !!this.selectedTime,
-            valido: isValid
-        });
-
         return isValid;
     }
 
     showError(message) {
+        console.error('[BookingManager] Erro:', message);
         this.showNotification('error', message);
     }
 
@@ -485,6 +473,7 @@ class BookingManager {
     }
 
     showWarning(message) {
+        console.warn('[BookingManager] Aviso:', message);
         const notification = document.createElement('div');
         notification.className = 'notification warning';
         notification.textContent = message;
@@ -499,6 +488,19 @@ class BookingManager {
         setTimeout(() => {
             notification.remove();
         }, 5000);
+    }
+
+    getBarberAvailability(barberId, date) {
+    
+        const barber = this.barbers.find(b => b.id == barberId);
+
+        if (!barber) return [];
+        const dayOfWeek = new Date(date).getDay();
+
+        return [
+            "09:00", "10:00", "11:00",
+            "14:00", "15:00", "16:00", "17:00", "18:00"
+        ];
     }
 }
 

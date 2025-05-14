@@ -1,11 +1,12 @@
 class Calendar {
     constructor(containerId, options = {}) {
+        console.log('[Calendar] Inicializando calendário...');
         this.container = document.getElementById(containerId);
         this.options = {
             onDateSelect: options.onDateSelect || (() => {}),
             minDate: options.minDate || new Date(),
-            maxDate: options.maxDate || this.addMonths(new Date(), 2), // Permite agendamento até 2 meses à frente
-            disabledDays: options.disabledDays || [0], // Domingo é desabilitado por padrão
+            maxDate: options.maxDate || this.addMonths(new Date(), 2),
+            disabledDays: options.disabledDays || [0],
             ...options
         };
 
@@ -16,11 +17,13 @@ class Calendar {
     }
 
     init() {
+        console.log('[Calendar] Chamando init()');
         this.render();
         this.attachEventListeners();
     }
 
     render() {
+        console.log('[Calendar] Renderizando calendário...');
         const calendar = this.createCalendarHTML();
         this.container.innerHTML = calendar;
         this.highlightToday();
@@ -30,6 +33,7 @@ class Calendar {
     }
 
     createCalendarHTML() {
+        console.log('[Calendar] Criando HTML do calendário...');
         const year = this.currentDate.getFullYear();
         const month = this.currentDate.getMonth();
         
@@ -54,12 +58,10 @@ class Calendar {
                 <div class="calendar-dates">
         `;
 
-        // Dias vazios do início do mês
         for (let i = 0; i < firstDayIndex; i++) {
             html += '<div class="calendar-date empty"></div>';
         }
 
-        // Dias do mês
         for (let day = 1; day <= lastDate; day++) {
             const date = new Date(year, month, day);
             const isDisabled = this.isDateDisabled(date);
@@ -85,6 +87,7 @@ class Calendar {
     }
 
     getWeekDaysHTML() {
+        console.log('[Calendar] Gerando nomes dos dias da semana...');
         const weekDays = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
         return weekDays.map(day => `<div class="weekday">${day}</div>`).join('');
     }
@@ -94,28 +97,30 @@ class Calendar {
             'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
             'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
         ];
+        console.log(`[Calendar] Obtendo nome do mês: ${months[month]}`);
         return months[month];
     }
 
     attachEventListeners() {
-        // Navegação entre meses
+        console.log('[Calendar] Adicionando event listeners de navegação e datas...');
         const prevButton = this.container.querySelector('.calendar-nav.prev');
         const nextButton = this.container.querySelector('.calendar-nav.next');
 
         prevButton.addEventListener('click', () => this.navigateMonth(-1));
         nextButton.addEventListener('click', () => this.navigateMonth(1));
 
-        // Seleção de data
         const dates = this.container.querySelectorAll('.calendar-date:not(.empty):not(.disabled)');
         dates.forEach(dateElement => {
             dateElement.addEventListener('click', (e) => {
                 const dateStr = e.target.dataset.date;
+                console.log('[Calendar] Data clicada:', dateStr);
                 this.selectDate(new Date(dateStr));
             });
         });
     }
 
     navigateMonth(direction) {
+        console.log(`[Calendar] Navegando mês: ${direction > 0 ? 'próximo' : 'anterior'}`);
         this.currentDate = new Date(
             this.currentDate.getFullYear(),
             this.currentDate.getMonth() + direction,
@@ -125,8 +130,11 @@ class Calendar {
     }
 
     selectDate(date) {
-        if (this.isDateDisabled(date)) return;
-
+        if (this.isDateDisabled(date)) {
+            console.log('[Calendar] Data desabilitada selecionada:', date);
+            return;
+        }
+        console.log('[Calendar] Data selecionada:', date);
         this.selectedDate = date;
         this.highlightSelectedDate();
         this.options.onDateSelect(date);
@@ -138,6 +146,7 @@ class Calendar {
             `.calendar-date[data-date="${today.toISOString().split('T')[0]}"]`
         );
         if (todayElement) {
+            console.log('[Calendar] Destacando hoje:', today);
             todayElement.classList.add('today');
         }
     }
@@ -154,37 +163,51 @@ class Calendar {
             `.calendar-date[data-date="${this.selectedDate.toISOString().split('T')[0]}"]`
         );
         if (selectedElement) {
+            console.log('[Calendar] Destacando data selecionada:', this.selectedDate);
             selectedElement.classList.add('selected');
         }
     }
 
     isDateDisabled(date) {
         // Verifica se a data está no passado
-        if (date < new Date().setHours(0, 0, 0, 0)) return true;
+        if (date < new Date().setHours(0, 0, 0, 0)) {
+            console.log('[Calendar] Data está no passado:', date);
+            return true;
+        }
 
         // Verifica se a data está além do máximo permitido
-        if (date > this.options.maxDate) return true;
+        if (date > this.options.maxDate) {
+            console.log('[Calendar] Data está além do máximo permitido:', date);
+            return true;
+        }
 
         // Verifica se é um dia da semana desabilitado
-        if (this.options.disabledDays.includes(date.getDay())) return true;
+        if (this.options.disabledDays.includes(date.getDay())) {
+            console.log('[Calendar] Dia da semana desabilitado:', date.getDay());
+            return true;
+        }
 
         return false;
     }
 
     addMonths(date, months) {
+        console.log(`[Calendar] Adicionando ${months} meses à data:`, date);
         return new Date(date.getFullYear(), date.getMonth() + months, date.getDate());
     }
 
     // Métodos públicos para controle externo
     getSelectedDate() {
+        console.log('[Calendar] getSelectedDate chamado. Data:', this.selectedDate);
         return this.selectedDate;
     }
 
     setSelectedDate(date) {
+        console.log('[Calendar] setSelectedDate chamado. Data:', date);
         this.selectDate(new Date(date));
     }
 
     refresh() {
+        console.log('[Calendar] refresh chamado.');
         this.render();
     }
 }

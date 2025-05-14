@@ -3,6 +3,7 @@ package br.senac.tads.dsw.webservice_rest.CRUDbarbeiros.controller;
 
 import br.senac.tads.dsw.webservice_rest.CRUDbarbeiros.model.Barbeiro;
 import br.senac.tads.dsw.webservice_rest.CRUDbarbeiros.service.BarbeiroService;
+import br.senac.tads.dsw.webservice_rest.CRUDbarbeiros.dto.BarbeiroDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,8 +21,8 @@ public class BarbeiroController {
     }
 
     @GetMapping
-    public List<Barbeiro> listar() {
-        return service.listarTodos();
+    public List<BarbeiroDTO> listar() {
+        return service.listarTodosComDiasDisponiveis();
     }
 
     @GetMapping("/{id}")
@@ -39,8 +40,8 @@ public class BarbeiroController {
     @PutMapping("/{id}")
     public ResponseEntity<Barbeiro> atualizar(@PathVariable Long id, @RequestBody Barbeiro dados) {
         return service.buscarPorId(id).map(b -> {
-            b.setNome(dados.getNome());
-            b.setEspecialidade(dados.getEspecialidade());
+            b.setName(dados.getName());
+            b.setSpecialty(dados.getSpecialty());
             return ResponseEntity.ok(service.salvar(b));
         }).orElse(ResponseEntity.notFound().build());
     }

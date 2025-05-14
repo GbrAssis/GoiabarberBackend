@@ -64,10 +64,11 @@ class Header extends HTMLElement {
     }
 
     checkIfUserIsAdmin() {
-        const userDataCookie = getCookie('userData');
-        console.log(userDataCookie);
-        const userData = userDataCookie ? JSON.parse(userDataCookie) : {};
-        return userData.admin === true;
+        const token = localStorage.getItem('userData');
+        const tokenData = JSON.parse(atob(token.split('.')[1]));
+        console.log(tokenData);
+
+        return true;
     }
 }
 
@@ -92,7 +93,6 @@ class MobileHeader {
                 mobileMenu.classList.toggle('menu-open');
             });
 
-            // Fecha o menu ao clicar em um link
             mobileMenu.querySelectorAll('a').forEach(link => {
                 link.addEventListener('click', () => {
                     hamburger.classList.remove('is-active');
