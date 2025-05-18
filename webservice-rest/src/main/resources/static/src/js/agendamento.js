@@ -455,15 +455,16 @@ class BookingManager {
 
     redirectToCheckout(bookingId) {
         const purchaseData = {
-            service: this.selectedService.name,
-            barber: this.selectedBarber.name,
+            service: (this.selectedService.name || '').replace(/[\n\r]+/g, ' ').trim(),
+            barber: (this.selectedBarber.name || '').replace(/[\n\r]+/g, ' ').trim(),
             date: this.selectedDate.toISOString().split('T')[0],
-            time: this.selectedTime,
+            time: (this.selectedTime || '').replace(/[\n\r]+/g, ' ').trim(),
             price: this.selectedService.price
         };
 
-        const encodedData = btoa(JSON.stringify(purchaseData));
+        console.log('purchaseData:', purchaseData);
 
+        const encodedData = btoa(JSON.stringify(purchaseData));
         window.location.href = `checkout.html?data=${encodedData}`;
     }
 

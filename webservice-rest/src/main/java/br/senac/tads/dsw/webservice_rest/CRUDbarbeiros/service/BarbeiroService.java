@@ -1,7 +1,5 @@
 package br.senac.tads.dsw.webservice_rest.CRUDbarbeiros.service;
 
-
-
 import br.senac.tads.dsw.webservice_rest.CRUDbarbeiros.model.Barbeiro;
 import br.senac.tads.dsw.webservice_rest.CRUDbarbeiros.repository.BarbeiroRepository;
 import br.senac.tads.dsw.webservice_rest.CRUDbarbeiros.dto.BarbeiroDTO;
@@ -11,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ArrayList;
 
-@Service
+@Service("crudBarbeiroService")
 public class BarbeiroService {
 
     private final BarbeiroRepository repository;

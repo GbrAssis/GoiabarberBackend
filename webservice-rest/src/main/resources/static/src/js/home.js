@@ -1,43 +1,14 @@
 import { ApiService } from '../mocks/data.js';
 
-class BarbersCarousel {
-    constructor() {
-        this.currentPosition = 0;
-        this.isAnimating = false;
-        this.cardWidth = 0;
-        this.visibleCards = 0;
-        this.totalCards = 0;
-        this.init();
-    }
-
+class BarbersList {
     async init() {
         await this.loadBarbers();
-        this.setupControls();
-        this.calculateDimensions();
-        window.addEventListener('resize', () => this.calculateDimensions());
-        this.updateButtonsVisibility();
-    }
-
-    calculateDimensions() {
-        const track = document.querySelector('.barbers-track');
-        const cards = track.querySelectorAll('.barber-card');
-        const containerWidth = track.parentElement.offsetWidth;
-        
-        this.cardWidth = cards[0].offsetWidth + 20; 
-        this.visibleCards = Math.floor(containerWidth / this.cardWidth);
-        this.totalCards = cards.length;
-        
-        // Ajusta a posição atual se necessário
-        const maxPosition = -(this.totalCards - this.visibleCards);
-        if (this.currentPosition < maxPosition) {
-            this.currentPosition = maxPosition;
-            this.updateTrackPosition();
-        }
     }
 
     async loadBarbers() {
         try {
-            const barbers = await ApiService.getBarbers();
+           const barbers = await fetch('/barbeiros').then(r => r.json());
+           console.log(barbers);
             this.renderBarbers(barbers);
         } catch (error) {
             console.error('Erro ao carregar barbeiros:', error);
@@ -88,22 +59,16 @@ class BarbersCarousel {
         const hasHalfStar = rating % 1 >= 0.5;
         let stars = '';
 
-        // Estrelas cheias
         for (let i = 0; i < fullStars; i++) {
             stars += '★';
         }
-
-        // Meia estrela
         if (hasHalfStar) {
             stars += '⯨';
         }
-
-        // Estrelas vazias
         const emptyStars = 5 - Math.ceil(rating);
         for (let i = 0; i < emptyStars; i++) {
             stars += '☆';
         }
-
         return stars;
     }
 
@@ -113,93 +78,8 @@ class BarbersCarousel {
             <span class="day-badge">${dayNames[dayNumber]}</span>
         `).join('');
     }
-
-    setupControls() {
-        const prevButton = document.querySelector('.barbers-button.prev');
-        const nextButton = document.querySelector('.barbers-button.next');
-        const track = document.querySelector('.barbers-track');
-
-        if (!prevButton || !nextButton || !track) return;
-
-        prevButton.addEventListener('click', () => this.slide('prev'));
-        nextButton.addEventListener('click', () => this.slide('next'));
-
-        // Touch controls
-        let touchStartX = 0;
-        let touchEndX = 0;
-        let isDragging = false;
-        let startPosition = 0;
-
-        track.addEventListener('touchstart', (e) => {
-            touchStartX = e.touches[0].clientX;
-            startPosition = this.currentPosition;
-            isDragging = true;
-        });
-
-        track.addEventListener('touchmove', (e) => {
-            if (!isDragging) return;
-            
-            const currentX = e.touches[0].clientX;
-            const diff = (currentX - touchStartX) / this.cardWidth;
-            const newPosition = startPosition + diff;
-            
-            // Limita o arrasto dentro dos limites
-            if (newPosition <= 0 && newPosition >= -(this.totalCards - this.visibleCards)) {
-                this.currentPosition = newPosition;
-                this.updateTrackPosition();
-            }
-        });
-
-        track.addEventListener('touchend', () => {
-            isDragging = false;
-            // Ajusta para a posição mais próxima
-            this.currentPosition = Math.round(this.currentPosition);
-            this.updateTrackPosition();
-            this.updateButtonsVisibility();
-        });
-    }
-
-    slide(direction) {
-        if (this.isAnimating) return;
-        
-        const maxPosition = -(this.totalCards - this.visibleCards);
-
-        if (direction === 'next' && this.currentPosition > maxPosition) {
-            this.currentPosition--;
-        } else if (direction === 'prev' && this.currentPosition < 0) {
-            this.currentPosition++;
-        }
-
-        this.updateTrackPosition();
-        this.updateButtonsVisibility();
-    }
-
-    updateTrackPosition() {
-        const track = document.querySelector('.barbers-track');
-        this.isAnimating = true;
-        
-        track.style.transition = 'transform 0.5s ease-out';
-        track.style.transform = `translateX(100px)`;
-
-        setTimeout(() => {
-            this.isAnimating = false;
-        }, 500);
-    }
-
-    updateButtonsVisibility() {
-        const prevButton = document.querySelector('.barbers-button.prev');
-        const nextButton = document.querySelector('.barbers-button.next');
-        const maxPosition = -(this.totalCards - this.visibleCards);
-
-        prevButton.style.opacity = this.currentPosition < 0 ? '1' : '0.5';
-        prevButton.style.pointerEvents = this.currentPosition < 0 ? 'auto' : 'none';
-
-        nextButton.style.opacity = this.currentPosition > maxPosition ? '1' : '0.5';
-        nextButton.style.pointerEvents = this.currentPosition > maxPosition ? 'auto' : 'none';
-    }
 }
 
-// Inicializa quando o DOM estiver pronto
 document.addEventListener('DOMContentLoaded', () => {
-    new BarbersCarousel();
+    new BarbersList().init();
 }); 

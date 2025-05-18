@@ -1,10 +1,12 @@
 // Função para decodificar os dados da URL
 function getPurchaseDetails() {
     const params = new URLSearchParams(window.location.search);
-    const data = params.get('data'); // Supondo que os dados estão na URL como ?data=base64string
+    const data = params.get('data'); 
+    console.log(data);
     if (data) {
-        const decodedData = JSON.parse(atob(data)); // Decodifica a string base64 e converte de volta para objeto
-        displayPurchaseDetails(decodedData); // Chama a função para exibir os dados
+        const decodedData = JSON.parse(atob(data));
+        console.log(decodedData);
+        displayPurchaseDetails(decodedData); 
     }
 }
 
@@ -133,8 +135,6 @@ document.querySelector('.confirm-button').addEventListener('click', () => {
     if (creditCardOption.checked && !validateCreditCardForm()) {
         return;
     }
-
-    // Gerar número do pedido e redirecionar
     const orderNumber = generateOrderNumber();
     window.location.href = `thank-you.html?order=${orderNumber}`;
 });

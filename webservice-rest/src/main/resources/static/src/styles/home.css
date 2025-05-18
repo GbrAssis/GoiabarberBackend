@@ -88,16 +88,20 @@ body {
 }
 
 .barbers-carousel {
-    position: relative;
+    width: 100%;
+    max-width: 100vw;
     overflow: hidden;
-    padding: 20px 0;
+    position: relative;
 }
 
 .barbers-track {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 24px;
-    transition: transform 0.3s ease-in-out;
-    padding: 20px;
+    padding: 20px 0;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .barber-card {

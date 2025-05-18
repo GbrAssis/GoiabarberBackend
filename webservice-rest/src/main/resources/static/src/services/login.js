@@ -1,6 +1,5 @@
 import { setCookie, getCookie, removeCookie } from './auth.js';
 
-// Função para lidar com o login
 async function handleLogin() {
     console.log('handleLogin');
     const email = document.getElementById('email').value.trim();
@@ -8,7 +7,6 @@ async function handleLogin() {
     console.log(password);
     const errorMessage = document.getElementById('error-message');
 
-    // Validação básica
     if (!email || !password) {
         errorMessage.textContent = 'Por favor, preencha todos os campos';
         errorMessage.style.display = 'block';
@@ -31,8 +29,7 @@ async function handleLogin() {
             const data = await response.json();
             console.log(data);
             localStorage.setItem('userData', JSON.stringify(data));
-            localStorage.setItem('token', JSON.stringify(data));
-            window.location.href = '/home.html';
+            // window.location.href = '/home.html';
         } else {
             errorMessage.textContent = 'Email ou senha inválidos';
             errorMessage.style.display = 'block';
