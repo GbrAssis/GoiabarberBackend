@@ -65,10 +65,15 @@ class Header extends HTMLElement {
 
     checkIfUserIsAdmin() {
         const token = localStorage.getItem('userData');
-        const tokenData = JSON.parse(atob(token.split('.')[1]));
-        console.log(tokenData);
-
-        return true;
+        if (!token) return false;
+        
+        try {
+            const tokenData = JSON.parse(atob(token.split('.')[1]));
+            return tokenData.admin === true;
+        } catch (error) {
+            console.error('Erro ao decodificar o token:', error);
+            return false;
+        }
     }
 }
 
