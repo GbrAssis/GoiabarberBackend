@@ -24,12 +24,12 @@ public class Barbeiro {
         joinColumns = @JoinColumn(name = "barber_id")
     )
     @Column(name = "day_of_week")
-    private java.util.List<Integer> availableDays;
+    private java.util.List<String> availableDays;
 
     public Barbeiro() {
     }
 
-    public Barbeiro(String name, String specialty, String image, Double rating, java.util.List<Integer> availableDays) {
+    public Barbeiro(String name, String specialty, String image, Double rating, java.util.List<String> availableDays) {
         this.name = name;
         this.specialty = specialty;
         this.image = image;
@@ -73,11 +73,11 @@ public class Barbeiro {
         this.rating = rating;
     }
 
-    public java.util.List<Integer> getAvailableDays() {
+    public java.util.List<String> getAvailableDays() {
         return availableDays;
     }
 
-    public void setAvailableDays(java.util.List<Integer> availableDays) {
+    public void setAvailableDays(java.util.List<String> availableDays) {
         this.availableDays = availableDays;
     }
 }

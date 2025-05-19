@@ -8,7 +8,7 @@ public class BarbeiroDTO {
     private String specialty;
     private String image;
     private Double rating;
-    private List<Integer> availableDays;
+    private List<String> availableDays;
 
     public Long getId() {
         return id;
@@ -50,11 +50,11 @@ public class BarbeiroDTO {
         this.rating = rating;
     }
 
-    public List<Integer> getAvailableDays() {
+    public List<String> getAvailableDays() {
         return availableDays;
     }
 
-    public void setAvailableDays(List<Integer> availableDays) {
+    public void setAvailableDays(List<String> availableDays) {
         this.availableDays = availableDays;
     }
 

@@ -21,7 +21,7 @@ class Header extends HTMLElement {
                 <nav class="nav-container">
                     <div class="logo">
                         <a href="/home.html">
-                            <img src="./src/logo-goiaba.png" alt="Goiabarber Logo">
+                            <img src="./src/logogoiaba.png" alt="Goiabarber Logo">
                         </a>
                     </div>
                     <ul class="nav-links">

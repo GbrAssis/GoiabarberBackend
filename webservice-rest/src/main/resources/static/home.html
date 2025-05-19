@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <app-header></app-header>
@@ -30,8 +31,8 @@
                         <img src="src/barbearia.jpg" alt="Promoção 3">
                     </div>
                 </div>
-                <button class="carousel-button prev"><-</button>
-                <button class="carousel-button next">-></button>
+                <button class="carousel-button prev"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-button next"><i class="fas fa-chevron-right"></i></button>
                 <div class="carousel-dots"></div>
             </div>
         </section>
@@ -40,7 +41,16 @@
         <section class="barbers-section">
             <div class="container">
                 <h2 class="subtitle">Nossos Profissionais</h2>
-                <div class="barbers-track"></div>
+                <div class="barbers-carousel">
+                    <button class="carousel-button prev">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="barbers-track"></div>
+                    <button class="carousel-button next">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div class="carousel-dots"></div>
             </div>
         </section>
 
@@ -57,7 +67,6 @@
                         allowfullscreen="" 
                         loading="lazy">
                     </iframe>
-                    
                 </div>
             </div>
         </section>
@@ -89,12 +98,8 @@
     </div>
 
     <script src="src/components/header.js"></script>
-    <script src="src/js/home.js"></script>
-    <script src="src/js/carousel.js"></script>
-    <script src="src/js/barbers.js"></script>
     <script src="src/components/footer.js"></script>
-    <script type="module" src="src/js/home.js"></script>
-    <script type="module" src="src/services/auth.js"></script>
-    
+    <script src="src/js/carousel.js"></script>
+    <script src="src/js/barbersCarousel.js"></script>
 </body>
 </html> 
