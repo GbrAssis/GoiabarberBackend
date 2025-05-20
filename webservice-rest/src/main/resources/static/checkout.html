@@ -12,6 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
 
@@ -78,8 +79,26 @@
 
                 <!-- PIX -->
                 <div id="pixSection" style="display: none">
-                    <h2>Pagamento PIX</h2>
-                    <p>Por favor, forneça o código PIX para o pagamento.</p>
+                    <div class="pix-container">
+                        <h2>Pagamento PIX</h2>
+                        <div class="pix-content">
+                            <div class="qr-code-container">
+                                <div id="qrcode"></div>
+                            </div>
+                            <div class="pix-info">
+                                <p>Escaneie o QR Code acima com seu aplicativo de pagamento</p>
+                                <div class="pix-copy">
+                                    <p>Ou copie o código PIX abaixo:</p>
+                                    <div class="pix-code">
+                                        <input type="text" id="pixCode" readonly>
+                                        <button onclick="copyPixCode()">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Dinheiro -->

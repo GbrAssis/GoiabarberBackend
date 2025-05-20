@@ -141,3 +141,87 @@ document.querySelector('.confirm-button').addEventListener('click', () => {
 
 // Chama a função ao carregar a página
 window.onload = getPurchaseDetails;
+
+// Adiciona a biblioteca QRCode.js
+document.head.innerHTML += '<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>';
+
+// Função para gerar o QR Code
+function generatePixQRCode() {
+    const qrcodeContainer = document.getElementById('qrcode');
+    if (!qrcodeContainer) {
+        console.error('Container do QR Code não encontrado');
+        return;
+    }
+    
+    qrcodeContainer.innerHTML = ''; // Limpa o container
+
+    // Gera um código PIX aleatório
+    const pixCode = generateRandomPixCode();
+    
+    // Atualiza o input com o código PIX
+    const pixCodeInput = document.getElementById('pixCode');
+    if (pixCodeInput) {
+        pixCodeInput.value = pixCode;
+    }
+
+    try {
+        // Gera o QR Code
+        new QRCode(qrcodeContainer, {
+            text: pixCode,
+            width: 200,
+            height: 200,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+        console.log('QR Code gerado com sucesso');
+    } catch (error) {
+        console.error('Erro ao gerar QR Code:', error);
+    }
+}
+
+// Função para gerar um código PIX aleatório
+function generateRandomPixCode() {
+    // Estrutura básica do código PIX
+    const pixHeader = "00020126580014BR.GOV.BCB.PIX0136";
+    const pixFooter = "520400005303986540599.905802BR5915GOIABARBER6008BRASILIA62070503***6304E2CA";
+    
+    // Gera um ID aleatório de 36 caracteres
+    const randomId = Array.from({length: 36}, () => 
+        Math.floor(Math.random() * 16).toString(16)
+    ).join('');
+    
+    return pixHeader + randomId + pixFooter;
+}
+
+// Função para copiar o código PIX
+function copyPixCode() {
+    const pixCode = document.getElementById('pixCode');
+    pixCode.select();
+    document.execCommand('copy');
+    
+    // Feedback visual
+    const button = document.querySelector('.pix-code button');
+    const originalIcon = button.innerHTML;
+    button.innerHTML = '<i class="fas fa-check"></i>';
+    setTimeout(() => {
+        button.innerHTML = originalIcon;
+    }, 2000);
+}
+
+// Atualiza o QR Code quando a seção PIX é mostrada
+document.getElementById('pix').addEventListener('change', function() {
+    if (this.checked) {
+        console.log('PIX selecionado, gerando QR Code...');
+        generatePixQRCode();
+    }
+});
+
+// Inicializa o QR Code se PIX estiver selecionado por padrão
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM carregado, verificando se PIX está selecionado...');
+    if (document.getElementById('pix').checked) {
+        console.log('PIX está selecionado por padrão, gerando QR Code...');
+        generatePixQRCode();
+    }
+});

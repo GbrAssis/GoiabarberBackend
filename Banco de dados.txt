@@ -43,7 +43,7 @@ CREATE TABLE services (
 INSERT INTO services (name, description, duration, price, originalPrice, discount, image, category, badge) VALUES 
 ('Corte Masculino', 'Corte de cabelo masculino com tesoura ou máquina.', '30min', 30.00, 40.00, '25%', 'https://cdn.pixabay.com/photo/2021/11/23/13/43/barber-6818710_1280.jpg', 'Cabelos', 'Popular'),
 ('Barba Completa', 'Modelagem de barba com toalha quente e navalha.', '25min', 25.00, 30.00, '17%', 'https://img.freepik.com/fotos-gratis/homem-bonito-na-barbearia-barbeando-a-barba_1303-26258.jpg', 'Barba', 'Clássico'),
-('Hidratação Capilar', 'Tratamento capilar com produtos específicos.', '40min', 45.00, 60.00, '25%', 'https://www.istockphoto.com/photo/hair-washed-gm514387176-88068307', 'Tratamentos', 'Premium'),
+('Hidratação Capilar', 'Tratamento capilar com produtos específicos.', '40min', 45.00, 60.00, '25%', 'http://estilobifasico.com/wp-content/uploads/2016/01/hidratacao-no-cabelo-2.jpg', 'Tratamentos', 'Premium'),
 ('Pigmentação', 'Coloração com tonalizante ou tintura.', '60min', 100.00, 120.00, '17%', 'https://img.freepik.com/fotos-gratis/retrato-de-close-up-de-risos-jovem-readhead-homem-com-escova-de-cabelo-rosa-preso-no-cabelo_171337-7863.jpg', 'Coloração', 'Promoção'),
 ('Escova Progressiva', 'Alisamento sem formol.', '90min', 150.00, 180.00, '17%', 'https://cdn.pixabay.com/photo/2021/11/15/12/06/barber-shop-6797941_1280.jpg', 'Tratamentos', 'Destaque');
 
@@ -78,9 +78,9 @@ CREATE TABLE barbers (
 INSERT INTO barbers (name, specialty, image, rating) VALUES
 ('Carlos Mendes', 'Corte clássico', 'https://cdn.pixabay.com/photo/2020/05/24/02/00/barber-shop-5212059_1280.jpg', 4.75),
 ('João Silva', 'Fade e barba', 'https://cdn.pixabay.com/photo/2021/11/15/11/52/barber-shop-6797906_1280.jpg', 4.90),
-('Pedro Santos', 'Corte infantil', 'https://media.istockphoto.com/id/1973192099/pt/foto/portrait-of-a-confident-young-male-hairstylist-in-salon.jpg', 4.60),
+('Pedro Santos', 'Corte infantil', 'https://cycleschool.com.br/wp-content/uploads/2022/10/crianca-no-barbeiro.jpg', 4.60),
 ('Marcos Lima', 'Barba estilizada', 'https://cdn.pixabay.com/photo/2020/07/22/04/27/barber-5428008_1280.jpg', 4.85),
-('Lucas Oliveira', 'Corte moderno', 'https://media.istockphoto.com/id/1365608023/pt/foto/shot-of-a-handsome-young-barber-standing-alone-in-his-salon.jpg', 4.95);
+('Lucas Oliveira', 'Corte moderno', 'https://img.freepik.com/fotos-gratis/barba-de-corte-de-homem-bonito-em-um-salao-de-barbearia_1303-20932.jpg?semt=ais_hybrid&w=740', 4.95);
 
 -- Tabela de dias disponíveis dos barbeiros
 DROP TABLE IF EXISTS barber_available_days;
@@ -97,7 +97,6 @@ INSERT INTO barber_available_days (barber_id, day_of_week) VALUES
 (3, 'Saturday'), (3, 'Sunday'),
 (4, 'Tuesday'), (4, 'Wednesday'), (4, 'Thursday'), (4, 'Friday'),
 (5, 'Wednesday'), (5, 'Thursday'), (5, 'Friday');
-
 -- Tabela de agendamentos
 DROP TABLE IF EXISTS bookings;
 CREATE TABLE bookings (

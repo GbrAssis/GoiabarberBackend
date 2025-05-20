@@ -22,6 +22,12 @@ window.toggleEditMode = () => {
     const editMode = document.getElementById('edit-mode');
     
     if (viewMode.style.display !== 'none') {
+        // Preenche os campos de edição com os valores atuais
+        document.getElementById('edit-nome').value = document.getElementById('display-nome').textContent;
+        document.getElementById('edit-email').value = document.getElementById('display-email').textContent;
+        document.getElementById('edit-telefone').value = document.getElementById('display-telefone').textContent;
+        document.getElementById('edit-nascimento').value = document.getElementById('display-nascimento').textContent;
+        
         viewMode.style.display = 'none';
         editMode.style.display = 'block';
     } else {
@@ -61,29 +67,78 @@ async function atualizarPerfil(updatedData) {
 }
 
 // Salvar alterações e enviar para o backend
-window.salvarAlteracoes = async () => {
-    // Get updated values
-    const updatedData = {
-        ...userData,
-        nome: document.getElementById('edit-nome').value,
-        email: document.getElementById('edit-email').value,
-        telefone: document.getElementById('edit-telefone').value,
-        nascimento: document.getElementById('edit-nascimento').value
+window.salvarAlteracoes = () => {
+    // Validações básicas
+    const nome = document.getElementById('edit-nome').value.trim();
+    const email = document.getElementById('edit-email').value.trim();
+    const telefone = document.getElementById('edit-telefone').value.trim().replace(/\D/g, ''); // Remove tudo que não for número
+    const nascimento = document.getElementById('edit-nascimento').value;
+
+    // Validações
+    if (!nome) {
+        alert('Por favor, preencha o nome completo.');
+        return;
+    }
+
+    if (!email) {
+        alert('Por favor, preencha o e-mail.');
+        return;
+    }
+
+    if (!email.includes('@')) {
+        alert('Por favor, insira um e-mail válido.');
+        return;
+    }
+
+    if (!telefone) {
+        alert('Por favor, preencha o telefone.');
+        return;
+    }
+
+    if (telefone.length !== 11) {
+        alert('O telefone deve conter exatamente 11 números (DDD + número).');
+        return;
+    }
+
+    if (!nascimento) {
+        alert('Por favor, preencha a data de nascimento.');
+        return;
+    }
+
+    // Atualiza os dados no frontend
+    document.getElementById('profile-name').textContent = nome;
+    document.getElementById('display-nome').textContent = nome;
+    document.getElementById('display-email').textContent = email;
+    document.getElementById('display-telefone').textContent = telefone;
+    document.getElementById('display-nascimento').textContent = nascimento;
+
+    // Atualiza o userData
+    window.userData = {
+        ...window.userData,
+        nome: nome,
+        email: email,
+        telefone: telefone,
+        nascimento: nascimento
     };
 
-    // Chama a função para atualizar no backend
-    await atualizarPerfil(updatedData);
-
-    // Update display
-    document.getElementById('profile-name').textContent = updatedData.nome;
-    document.getElementById('display-nome').textContent = updatedData.nome;
-    document.getElementById('display-email').textContent = updatedData.email;
-    document.getElementById('display-telefone').textContent = updatedData.telefone;
-    document.getElementById('display-nascimento').textContent = updatedData.nascimento;
-
-    // Switch back to view mode
+    // Volta para o modo de visualização
     toggleEditMode();
+    alert('Perfil atualizado com sucesso!');
 };
+
+// Adiciona validação em tempo real para o campo de telefone
+document.getElementById('edit-telefone').addEventListener('input', function(e) {
+    // Remove tudo que não for número
+    let value = e.target.value.replace(/\D/g, '');
+    
+    // Limita a 11 números
+    if (value.length > 11) {
+        value = value.slice(0, 11);
+    }
+    
+    // Atualiza o valor do campo
+    e.target.value = value;
+});
 
 // Handle avatar change
 document.getElementById('avatar-input').addEventListener('change', function(event) {
