@@ -16,6 +16,7 @@ public class JwtUtil {
                 .setSubject(user.getEmail())
                 .claim("nome", user.getNome())
                 .claim("tipo", user.getTipo())
+                .claim("admin", user.isAdmin())
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + 86400000)) // 1 dia
                 .signWith(SignatureAlgorithm.HS256, SECRET_KEY)

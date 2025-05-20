@@ -7,10 +7,11 @@ class Footer extends HTMLElement {
                     <!-- Logo e Informações Principais -->
                     <div class="footer-main">
                         <div class="footer-brand">
-                            <img src="../logo-goiaba.png" alt="Goiabarber Logo" class="footer-logo">
+                            <h3>GOIABARBER</h3>
+
                             <p>Goiabarber | CNPJ: XX.XXX.XXX/0001-XX</p>
-                            <p>Rua das Barbearias, 123 - Centro</p>
-                            <p>São Paulo/SP - CEP 01000-000</p>
+                            <p>R. Goiaba Natal - Vila Natal</p>
+                            <p>São Paulo/SP - CEP 04863-220</p>
                         </div>
                     </div>
 
@@ -18,10 +19,10 @@ class Footer extends HTMLElement {
                     <div class="footer-links">
                         <h3>NOSSOS SERVIÇOS</h3>
                         <ul>
-                            <li><a href="GoibarberFront/servicos.html">Cortes</a></li>
-                            <li><a href="GoibarberFront/servicos.html">Barba</a></li>
-                            <li><a href="GoibarberFront/servicos.html">Combos</a></li>
-                            <li><a href="GoibarberFront/servicos.html">Produtos</a></li>
+                            <li><a href="/servicos.html">Cortes</a></li>
+                            <li><a href="/servicos.html">Barba</a></li>
+                            <li><a href="/servicos.html">Combos</a></li>
+                            <li><a href="/servicos.html">Produtos</a></li>
                         </ul>
                     </div>
 
@@ -29,10 +30,10 @@ class Footer extends HTMLElement {
                     <div class="footer-info">
                         <h3>INFORMAÇÕES</h3>
                         <ul>
-                            <li><a href="GoibarberFront/sobre.html">Sobre Nós</a></li>
-                            <li><a href="GoibarberFront/politica-privacidade.html">Política de Privacidade</a></li>
-                            <li><a href="GoibarberFront/termos.html">Termos de Uso</a></li>
-                            <li><a href="GoibarberFront/trabalhe-conosco.html">Trabalhe Conosco</a></li>
+                            <li><a href="/sobre.html">Sobre Nós</a></li>
+                            <li><a href="/politica-privacidade.html">Política de Privacidade</a></li>
+                            <li><a href="/termos.html">Termos de Uso</a></li>
+                            <li><a href="/trabalhe-conosco.html">Trabalhe Conosco</a></li>
                         </ul>
                     </div>
 

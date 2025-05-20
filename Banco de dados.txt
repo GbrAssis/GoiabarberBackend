@@ -94,7 +94,9 @@ CREATE TABLE barber_available_days (
 INSERT INTO barber_available_days (barber_id, day_of_week) VALUES
 (1, 'Monday'), (1, 'Tuesday'), (1, 'Wednesday'), (1, 'Thursday'), (1, 'Friday'),
 (2, 'Tuesday'), (2, 'Thursday'), (2, 'Saturday'),
-(3, 'Saturday'), (3, 'Sunday');
+(3, 'Saturday'), (3, 'Sunday'),
+(4, 'Tuesday'), (4, 'Wednesday'), (4, 'Thursday'), (4, 'Friday'),
+(5, 'Wednesday'), (5, 'Thursday'), (5, 'Friday');
 
 -- Tabela de agendamentos
 DROP TABLE IF EXISTS bookings;

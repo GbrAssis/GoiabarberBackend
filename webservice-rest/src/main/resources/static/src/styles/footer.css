@@ -23,13 +23,15 @@
 }
 
 .footer-brand {
-    margin-bottom: 1rem;
+    margin-bottom: 3rem;
 }
 
-.footer-logo {
-    width: 150px;
-    margin-bottom: 1rem;
+.footer-brand img{
+    height: 60px;
+    width: auto;
 }
+
+
 
 .footer-brand p {
     color: var(--footer-link);
