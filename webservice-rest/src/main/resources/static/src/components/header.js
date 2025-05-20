@@ -14,14 +14,14 @@ class Header extends HTMLElement {
         const adminMenuItems = isAdmin ? `
             <li><a href="/cadastros.html">Cadastros</a></li>
             <li><a href="/cliente.html">Cliente</a></li>
-        ` : '';
+        ` : ''; 
 
         this.innerHTML = `
             <header class="header desktop">
                 <nav class="nav-container">
                     <div class="logo">
                         <a href="/home.html">
-                            <img src="./src/logogoiaba.png" alt="Goiabarber Logo">
+                            <img src="./src/logo-goiaba.png" alt="Goiabarber Logo">
                         </a>
                     </div>
                     <ul class="nav-links">
@@ -66,7 +66,7 @@ class Header extends HTMLElement {
     checkIfUserIsAdmin() {
         const token = localStorage.getItem('userData');
         if (!token) return false;
-        
+
         try {
             const tokenData = JSON.parse(atob(token.split('.')[1]));
             return tokenData.admin === true;

@@ -24,12 +24,11 @@ async function handleLogin() {
                 senha: password
             })
         });
-        console.log(response);
+
         if (response.ok) {
             const data = await response.json();
-            console.log(data);
             localStorage.setItem('userData', JSON.stringify(data));
-            // window.location.href = '/home.html';
+            window.location.href = '/home.html';
         } else {
             errorMessage.textContent = 'Email ou senha inválidos';
             errorMessage.style.display = 'block';
