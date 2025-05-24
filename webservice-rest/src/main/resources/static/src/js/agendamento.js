@@ -227,9 +227,10 @@ class BookingManager {
             const barbers = await fetch('/barbeiros').then(r => r.json());
             this.barbers = barbers;
             this.renderBarbers(barbers);
-            const userBookings = await fetch('/agendamentos').then(r => r.json());
+            const userBookings = await fetch('/agendamentos/1').then(r => r.json());
+            console.log(userBookings)
             this.setLoading(true);
-            await this.renderUserBookings(userBookings);
+            this.renderUserBookings(userBookings);
             this.setLoading(false);
 
         } catch (error) {

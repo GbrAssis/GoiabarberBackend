@@ -1,5 +1,6 @@
 class Header extends HTMLElement {
     constructor() {
+        super();
         this.innerHTML = `
             <header class="header desktop">
                 <nav class="nav-container">
@@ -24,7 +25,7 @@ class Header extends HTMLElement {
                     </div>
                     <div class="user-actions">
                         <a href="/index.html" class="btn-login">Login</a>
-                        <a href="/register.html" class="btn-register">Criar Conta</a>
+                        <a href="/criarConta.html" class="btn-register">Criar Conta</a>
                     </div>
                 </nav>
             </header>            
