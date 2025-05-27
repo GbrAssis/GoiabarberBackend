@@ -94,21 +94,28 @@ class ClientManager {
         const card = document.createElement('div');
         card.className = 'booking-card';
         
-        const statusClass = booking.status === 'confirmado' ? 'status-confirmed' : 'status-pending';
-        const statusText = booking.status === 'confirmado' ? 'Confirmado' : 'Pendente';
+        // Safe property access with fallbacks
+        const status = booking?.status || 'pendente';
+        const statusClass = status === 'confirmado' ? 'status-confirmed' : 'status-pending';
+        const statusText = status === 'confirmado' ? 'Confirmado' : 'Pendente';
         
-        const dataHora = booking.dataHora ? new Date(booking.dataHora) : null;
-        const data = dataHora ? dataHora.toLocaleDateString() : 'Não informado';
-        const hora = dataHora ? dataHora.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'Não informado';
+        const dataHora = booking?.dataHora ? new Date(booking.dataHora) : null;
+        const data = dataHora ? dataHora.toLocaleDateString('pt-BR') : 'Não informado';
+        const hora = dataHora ? dataHora.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }) : 'Não informado';
+        
+        const userName = booking?.user?.nome || booking?.user?.name || 'Não informado';
+        const userEmail = booking?.user?.email || 'Não informado';
+        const serviceName = booking?.servico?.name || 'Não informado';
+        const servicePrice = booking?.servico?.price ? `R$ ${booking.servico.price.toFixed(2)}` : 'R$ 0,00';
         
         card.innerHTML = `
             <div>
-                <strong>Cliente:</strong> ${booking.user ? booking.user.nome : 'Não informado'}<br>
-                <strong>Email:</strong> ${booking.user ? booking.user.email : 'Não informado'}
+                <strong>Cliente:</strong> ${userName}<br>
+                <strong>Email:</strong> ${userEmail}
             </div>
             <div>
-                <strong>Serviço:</strong> ${booking.servico ? booking.servico.name : 'Não informado'}<br>
-                <strong>Valor:</strong> R$ ${booking.servico ? booking.servico.price.toFixed(2) : '0.00'}
+                <strong>Serviço:</strong> ${serviceName}<br>
+                <strong>Valor:</strong> ${servicePrice}
             </div>
             <div>
                 <strong>Data:</strong> ${data}<br>
