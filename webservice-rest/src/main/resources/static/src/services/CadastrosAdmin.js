@@ -102,8 +102,18 @@ class CadastroManager {
                 image: document.getElementById('serviceImage').value
             };
         } else {
+            const dayMapping = {
+                '1': 'Monday',
+                '2': 'Tuesday',
+                '3': 'Wednesday',
+                '4': 'Thursday',
+                '5': 'Friday',
+                '6': 'Saturday',
+                '0': 'Sunday'
+            };
+            
             const availableDays = Array.from(document.querySelectorAll('.checkbox-group input:checked'))
-                .map(cb => parseInt(cb.value));
+                .map(cb => dayMapping[cb.value]);
             
             this.formData = {
                 name: document.getElementById('barberName').value,

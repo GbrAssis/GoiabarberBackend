@@ -74,9 +74,22 @@ class BarbersList {
 
     renderAvailableDays(days) {
         const dayNames = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
-        return days.map(dayNumber => `
-            <span class="day-badge">${dayNames[dayNumber]}</span>
-        `).join('');
+        const dayMapping = {
+            'Sunday': 0,
+            'Monday': 1,
+            'Tuesday': 2,
+            'Wednesday': 3,
+            'Thursday': 4,
+            'Friday': 5,
+            'Saturday': 6
+        };
+
+        if (!days || !Array.isArray(days)) return '';
+        
+        return days.map(day => {
+            const dayNumber = dayMapping[day];
+            return `<span class="day-badge">${dayNames[dayNumber]}</span>`;
+        }).join('');
     }
 }
 
