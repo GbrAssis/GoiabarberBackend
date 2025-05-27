@@ -71,7 +71,7 @@ CREATE TABLE barbers (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     specialty VARCHAR(100),
-    image TEXT,
+    image LONGTEXT,
     rating DECIMAL(3,2)
 );
 
